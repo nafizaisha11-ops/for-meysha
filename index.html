@@ -1,15 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Celebrations</title>
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            background-color: #f0f8ff;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+        }
+        .candle {
+            display: inline-block;
+            position: relative;
+            width: 20px;
+            height: 50px;
+            margin: 0 5px;
+            background-color: yellow;
+            border-radius: 5px;
+        }
+        .flame {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: orange;
+            border-radius: 50%;
+            animation: flicker 1s infinite;
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            animation: fall 5s infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+    </style>
 </head>
 <body>
     <h1>Happy Birthday!</h1>
-    <audio controls>
+    <div>
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+    </div>
+    <p>Wishing you a day filled with love and happiness!</p>
+    <audio controls autoplay>
         <source src="https://cdn.pixabay.com/audio/2024/01/10/audio_52c9830e5f.mp3" type="audio/mpeg">
-        Your browser does not support the audio tag.
+        Your browser does not support the audio element.
     </audio>
+    <script>
+        // Confetti animation
+        for (let i = 0; i < 100; i++) {
+            let confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(confetti);
+        }
+    </script>
 </body>
 </html>
