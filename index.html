@@ -5,67 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Meysha</title>
     <style>
-        body {
-            margin: 0; padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #ff9ec4, #ffd6e8);
-            text-align: center; min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center;
-            overflow-x: hidden; color: #333;
-        }
-        #muteBtn {
-            position: fixed; top: 20px; right: 20px;
-            background: rgba(255, 255, 255, 0.6);
-            border: none; border-radius: 50%; width: 45px; height: 45px;
-            cursor: pointer; font-size: 14px; z-index: 1000;
-        }
-        #startBtn {
-            padding: 15px 40px; font-size: 22px; margin-top: 100px;
-            border: none; border-radius: 50px; cursor: pointer;
-            background: white; color: #ff4f9a; font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        #candle-container { display: none; margin-top: 100px; cursor: pointer; }
-        .candle-body {
-            width: 35px; height: 100px; background: #fff;
-            border-radius: 5px; position: relative; margin: 0 auto;
-        }
-        .flame {
-            width: 20px; height: 30px; background: orange;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            position: absolute; top: -35px; left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 20px orange; animation: flicker 0.1s infinite alternate;
-        }
-        @keyframes flicker {
-            0% { transform: translateX(-50%) scale(1); }
-            100% { transform: translateX(-52%) scale(1.1); }
-        }
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #ff9ec4, #ffd6e8); text-align: center; min-height: 100vh; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; color: #333; }
+        #muteBtn { position: fixed; top: 20px; right: 20px; background: rgba(255, 255, 255, 0.6); border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 14px; z-index: 1000; }
+        #startBtn { padding: 15px 40px; font-size: 22px; margin-top: 100px; border: none; border-radius: 50px; cursor: pointer; background: white; color: #ff4f9a; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        #candle-container { display: none; margin-top: 50px; position: relative; cursor: pointer; }
+        .character-img { width: 280px; position: relative; z-index: 1; }
+        .flame { width: 20px; height: 35px; background: linear-gradient(to bottom, #fff 0%, #ffde17 40%, #ff8000 70%, #ff2200 100%); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; position: absolute; top: 135px; left: 50%; transform: translateX(-50%); filter: blur(1px); box-shadow: 0 0 20px #ff8000; animation: flicker 0.1s infinite alternate, move 3s infinite; z-index: 2; }
+        @keyframes flicker { 0% { transform: translateX(-50%) scale(1); opacity: 0.9; } 100% { transform: translateX(-52%) scale(1.1); opacity: 1; } }
+        @keyframes move { 0%, 100% { margin-left: 0; } 50% { margin-left: 2px; } }
         #birthdayContent { display: none; width: 90%; max-width: 600px; padding: 20px; }
-        #message {
-            line-height: 1.6; padding: 25px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 20px; backdrop-filter: blur(10px);
-            margin-bottom: 50px;
-        }
-        .confetti {
-            position: fixed; top: -20px; width: 10px; height: 10px;
-            animation: fall 3s linear forwards; z-index: 100;
-        }
+        #message { line-height: 1.6; padding: 25px; background: rgba(255, 255, 255, 0.4); border-radius: 20px; backdrop-filter: blur(10px); margin-bottom: 50px; }
+        .confetti { position: fixed; top: -20px; width: 10px; height: 10px; animation: fall 3s linear forwards; z-index: 100; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
     </style>
 </head>
 <body>
-
 <button id="muteBtn">Audio</button>
 <h1 id="header">Happy Birthday Meysha</h1>
 <button id="startBtn">Click to Start</button>
-
 <div id="candle-container">
-    <div class="candle-body"><div class="flame"></div></div>
-    <p style="font-weight: bold; margin-top: 20px;">Tap the candle to blow it out!</p>
+    <div class="flame"></div>
+    <img src="unnamed.jpg" class="character-img" alt="Birthday Character">
+    <p style="font-weight: bold; color: #ff1e7b; font-size: 1.2rem; margin-top: 15px;">"Tap the candle to blow it out!"</p>
 </div>
-
 <div id="birthdayContent">
     <h2 style="color: #ff1e7b;">HAPPY BIRTHDAY MEYSHA</h2>
     <div id="message">
@@ -76,43 +38,12 @@
         <p>You're not just my friend — you're like the sister I can tell everything to without fear or hesitation. I'm so grateful for you, and I hope this year brings you as much happiness as you've brought into my life.</p>
     </div>
 </div>
-
-<audio id="music" loop>
-    <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_5500e309f4.mp3" type="audio/mpeg">
-</audio>
-
+<audio id="music" loop><source src="https://cdn.pixabay.com/audio/2022/03/10/audio_5500e309f4.mp3" type="audio/mpeg"></audio>
 <script>
-    const music = document.getElementById("music");
-    const startBtn = document.getElementById("startBtn");
-    const muteBtn = document.getElementById("muteBtn");
-    const candle = document.getElementById("candle-container");
-    const content = document.getElementById("birthdayContent");
-    const header = document.getElementById("header");
-
-    muteBtn.onclick = () => {
-        music.muted = !music.muted;
-        muteBtn.innerText = music.muted ? "Play" : "Mute";
-    };
-
-    startBtn.onclick = () => {
-        startBtn.style.display = "none";
-        header.style.display = "none";
-        candle.style.display = "block";
-        music.play();
-    };
-
-    candle.onclick = () => {
-        candle.style.display = "none";
-        content.style.display = "block";
-        for (let i = 0; i < 70; i++) {
-            const c = document.createElement("div");
-            c.className = "confetti";
-            c.style.left = Math.random() * 100 + "vw";
-            c.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
-            c.style.animationDelay = Math.random() * 2 + "s";
-            document.body.appendChild(c);
-        }
-    };
+    const music = document.getElementById("music"); const startBtn = document.getElementById("startBtn"); const muteBtn = document.getElementById("muteBtn"); const candle = document.getElementById("candle-container"); const content = document.getElementById("birthdayContent"); const header = document.getElementById("header");
+    muteBtn.onclick = () => { music.muted = !music.muted; muteBtn.innerText = music.muted ? "Play" : "Mute"; };
+    startBtn.onclick = () => { startBtn.style.display = "none"; header.style.display = "none"; candle.style.display = "block"; music.play(); };
+    candle.onclick = () => { candle.style.display = "none"; content.style.display = "block"; for (let i = 0; i < 70; i++) { const c = document.createElement("div"); c.className = "confetti"; c.style.left = Math.random() * 100 + "vw"; c.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`; c.style.animationDelay = Math.random() * 2 + "s"; document.body.appendChild(c); } };
 </script>
 </body>
 </html>
