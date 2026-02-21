@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Meysha ðŸŽ‚</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff9ec4, #ffd6e8);
+            text-align: center;
+            overflow-x: hidden;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #startBtn {
+            padding: 15px 40px;
+            font-size: 22px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            background: white;
+            color: #ff4f9a;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-top: 100px;
+        }
+
+        #candle-container {
+            display: none;
+            margin-top: 50px;
+            cursor: pointer;
+        }
+
+        #candle { font-size: 100px; position: relative; }
+
+        #flame {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+            animation: flicker 0.1s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); }
+            100% { transform: translateX(-52%) scale(1.1); }
+        }
+
+        #instruction { display: none; font-size: 18px; margin-top: 10px; font-weight: bold; }
+
+        #birthdayContent { display: none; width: 90%; max-width: 600px; }
+
+        #birthdayTitle {
+            font-size: 2.5rem;
+            color: #ff1e7b;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #message {
+            margin: 20px auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .confetti {
+            position: fixed;
+            top: -20px; /* Fixed: Starts above screen */
+            width: 12px;
+            height: 12px;
+            z-index: 100;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(720deg); }
+        }
+
+        .heart {
+            position: fixed;
+            bottom: -50px;
+            pointer-events: none;
+            animation: floatUp 4s linear forwards;
+        }
+
+        @keyframes floatUp {
+            to { transform: translateY(-110vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<h1 id="mainHeader">Happy Birthday Meysha ðŸ¤</h1>
+<button id="startBtn">Start</button>
+
+<div id="candle-container">
+    <div id="candle">ðŸ•¯ï¸<span id="flame">ðŸ”¥</span></div>
+    <p id="instruction">Tap the candle to blow ðŸŽ‚</p>
+</div>
+
+<div id="birthdayContent">
+    <div id="birthdayTitle">HAPPY BIRTHDAY MEYSHA ðŸ¤</div>
+    <div id="message">
+        <p>Happy Birthday, Meysha ðŸ¤</p>
+        <p>I hope you have the most amazing birthday. This is just a small gift from me, but I truly hope you like it. And honestly, at least that poop headed Tasbita somehow brought us closer ðŸ˜­</p>
+        <p>I know I can be a little cranky with you sometimes, but please know that surviving O-Levels without you would have been so much harder for me. Thank you for always being by my side and for patiently listening to all my nonsense.</p>
+        <p>If you hadnâ€™t come into my life, it would have felt so numb. Before you, I was scared to open up to people, to go out, to actually have fun and be myself. You have no idea how much youâ€™ve helped me mentally and emotionally.</p>
+        <p>Youâ€™re not just my friend â€” youâ€™re like the sister I can tell everything to without fear or hesitation. Iâ€™m so grateful for you, and I hope this year brings you as much happiness as youâ€™ve brought into my life. ðŸ’—</p>
+    </div>
+</div>
+
+<audio id="music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/Happy-Birthday-Song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const startBtn = document.getElementById("startBtn");
+    const candleContainer = document.getElementById("candle-container");
+    const flame = document.getElementById("flame");
+    const instruction = document.getElementById("instruction");
+    const content = document.getElementById("birthdayContent");
+    const music = document.getElementById("music");
+    const mainHeader = document.getElementById("mainHeader");
+
+    startBtn.addEventListener("click", () => {
+        startBtn.style.display = "none";
+        mainHeader.style.display = "none";
+        candleContainer.style.display = "block";
+        instruction.style.display = "block";
+    });
+
+    candleContainer.addEventListener("click", () => {
+        flame.style.display = "none";
+        instruction.style.display = "none";
+        candleContainer.style.display = "none";
+        content.style.display = "block";
+        
+        music.play().catch(() => console.log("Music play blocked"));
+
+        // Trigger effects
+        spawnConfetti();
+        setInterval(spawnHearts, 500);
+    }, { once: true });
+
+    function spawnConfetti() {
+        for (let i = 0; i < 80; i++) {
+            const confetti = document.createElement("div");
+            confetti.className = "confetti";
+            confetti.style.left = Math.random() * 100 + "vw";
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }
+    }
+
+    function spawnHearts() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "ðŸ’–";
+        heart.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+    }
+</script>
+
+</body>
+</html>
