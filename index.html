@@ -67,4 +67,11 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
             const c = document.createElement("div");
             c.className = "confetti";
             c.style.left = Math.random() * 100 + "vw";
-            c.style.background = `hsl(${Math
+            c.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            c.style.animationDelay = Math.random() * 2 + "s";
+            document.body.appendChild(c);
+        }
+    };
+</script>
+</body>
+</html>
