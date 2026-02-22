@@ -39,7 +39,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
 <div id="photoSection">
     <h2 style="color: #ff1e7b;">here are some beautiful pictures of you🤣</h2>
     <div class="photo-grid">
-        <img src="IMG_20250202_125710.jpg">
+        <img src="IMG_20250202_125710.jpeg">
         <img src="IMG_20260222_122032_109.jpg">
         <img src="IMG_20260222_122043_213.jpg">
         <img src="IMG_20260222_140507_577.jpg">
@@ -81,10 +81,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
     };
 
     heartBtn.onclick = () => {
-        // Hide photos completely
+        // This removes the pictures and titles
         photoSection.style.display = "none";
         
-        // Show only the message
+        // This shows the paragraph on a clean "page"
         messageSection.style.display = "block";
         window.scrollTo(0,0);
         
