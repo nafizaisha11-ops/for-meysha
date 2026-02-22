@@ -11,133 +11,75 @@ body {
     text-align: center; min-height: 100vh; display: flex; 
     flex-direction: column; align-items: center; overflow-x: hidden; color: #333; 
 }
-
-#muteBtn { 
-    position: fixed; top: 20px; right: 20px; 
-    background: rgba(255, 255, 255, 0.6); border: none; border-radius: 50%; 
-    width: 45px; height: 45px; cursor: pointer; z-index: 1000; 
-}
-
-#startBtn { 
-    padding: 15px 40px; font-size: 22px; margin-top: 100px; 
-    border: none; border-radius: 50px; cursor: pointer; 
-    background: white; color: #ff4f9a; font-weight: bold; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-}
-
-#candle-container { 
-    display: none; margin-top: 100px; cursor: pointer; position: relative;
-}
-
+#muteBtn { position: fixed; top: 20px; right: 20px; background: rgba(255, 255, 255, 0.6); border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; z-index: 1000; }
+#startBtn { padding: 15px 40px; font-size: 22px; margin-top: 100px; border: none; border-radius: 50px; cursor: pointer; background: white; color: #ff4f9a; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+#candle-container { display: none; margin-top: 100px; cursor: pointer; position: relative; }
 #candle-body {
     width: 30px; height: 120px; 
-    /* Pale yellow background with red stripes */
-    background: repeating-linear-gradient(
-        45deg,
-        #fff9c4,
-        #fff9c4 10px,
-        #ff5252 10px,
-        #ff5252 20px
-    ); 
-    border-radius: 5px; 
-    margin: 0 auto; position: relative;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    z-index: 1;
+    background: repeating-linear-gradient(45deg, #fff9c4, #fff9c4 10px, #ff5252 10px, #ff5252 20px); 
+    border-radius: 5px; margin: 0 auto; position: relative; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 1;
 }
-
 .flame { 
-    width: 18px; height: 30px; 
-    background: linear-gradient(to bottom, #fff 0%, #ffde17 40%, #ff8000 70%, #ff2200 100%); 
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; 
-    position: absolute; 
-    top: -35px; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    filter: blur(1px); 
-    box-shadow: 0 0 20px #ff8000; 
-    animation: flicker 0.1s infinite alternate; 
-    z-index: 2; 
+    width: 18px; height: 30px; background: linear-gradient(to bottom, #fff 0%, #ffde17 40%, #ff8000 70%, #ff2200 100%); 
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; position: absolute; top: -35px; left: 50%; transform: translateX(-50%); 
+    filter: blur(1px); box-shadow: 0 0 20px #ff8000; animation: flicker 0.1s infinite alternate; z-index: 2; 
 }
+@keyframes flicker { 0% { transform: translateX(-50%) scale(1); } 100% { transform: translateX(-51%) scale(1.1); } }
+#birthdayContent { display: none; width: 90%; max-width: 500px; padding: 20px; }
+#message { line-height: 1.6; padding: 25px; background: rgba(255, 255, 255, 0.4); border-radius: 20px; backdrop-filter: blur(10px); margin-top: 20px; font-size: 18px; font-weight: bold; }
 
-@keyframes flicker { 
-    0% { transform: translateX(-50%) scale(1); } 
-    100% { transform: translateX(-51%) scale(1.1); } 
-}
+/* Slideshow Styling */
+.slideshow-container { position: relative; width: 100%; height: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.slides { width: 100%; height: 100%; object-fit: cover; position: absolute; left: 0; top: 0; opacity: 0; transition: opacity 1.5s ease-in-out; }
+.active { opacity: 1; }
 
-#birthdayContent { 
-    display: none; width: 90%; max-width: 600px; padding: 20px; 
-}
-
-#message { 
-    line-height: 1.6; padding: 25px; 
-    background: rgba(255, 255, 255, 0.4); 
-    border-radius: 20px; backdrop-filter: blur(10px); margin-bottom: 50px; 
-    font-size: 20px; font-weight: bold;
-}
-
-.confetti { 
-    position: fixed; top: -20px; 
-    width: 10px; height: 10px; 
-    animation: fall 3s linear forwards; 
-    z-index: 100; 
-}
-
-@keyframes fall { 
-    to { transform: translateY(110vh) rotate(360deg); } 
-}
+.confetti { position: fixed; top: -20px; width: 10px; height: 10px; animation: fall 3s linear forwards; z-index: 100; }
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 </style>
 </head>
 <body>
-
 <button id="muteBtn">Audio</button>
 <h1 id="header">Happy Birthday Meysha</h1>
 <button id="startBtn">Click to Start</button>
-
 <div id="candle-container">
-    <div id="candle-body">
-        <div class="flame"></div>
-    </div>
+    <div id="candle-body"><div class="flame"></div></div>
     <p style="font-weight: bold; color: #ff1e7b; font-size: 1.2rem; margin-top: 20px;">"Tap the candle to blow it out!"</p>
 </div>
-
 <div id="birthdayContent">
-    <h2 style="color: #ff1e7b;">HAPPY BIRTHDAY MEYSHA!</h2>
+    <div class="slideshow-container">
+        <img src="IMG_20250202_125710.jpg" class="slides active">
+        <img src="IMG_20260222_122028.jpg" class="slides">
+        <img src="IMG_20260222_122030.jpg" class="slides">
+        <img src="IMG_20260222_122032.jpg" class="slides">
+    </div>
     <div id="message">
         <p>Happy Birthday, Meysha!</p>
-        <p>I hope you have the most amazing birthday. This is just a small gift from me, but I truly hope you like it.</p>
-        <p>I know I can be a little cranky with you sometimes, but please know that surviving O-Levels without you would have been so much harder for me. Thank you for always being by my side and for patiently listening to all my nonsense.</p>
-        <p>You’re not just my friend — you’re like the sister I can tell everything to without fear or hesitation. I’m so grateful for you!</p>
+        <p>I hope you have the most amazing birthday. You’re like the sister I can tell everything to without fear. I’m so grateful for you!</p>
     </div>
 </div>
-
-<audio id="music" loop>
-    <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_5500e309f4.mp3" type="audio/mpeg">
-</audio>
-
+<audio id="music" loop><source src="https://cdn.pixabay.com/audio/2022/03/10/audio_5500e309f4.mp3" type="audio/mpeg"></audio>
 <script>
     const music = document.getElementById("music");
     const startBtn = document.getElementById("startBtn");
-    const muteBtn = document.getElementById("muteBtn");
     const candle = document.getElementById("candle-container");
     const content = document.getElementById("birthdayContent");
-    const header = document.getElementById("header");
+    
+    startBtn.onclick = () => { startBtn.style.display = "none"; document.getElementById("header").style.display = "none"; candle.style.display = "block"; music.play(); };
 
-    muteBtn.onclick = () => {
-        music.muted = !music.muted;
-        muteBtn.innerText = music.muted ? "Play" : "Mute";
-    };
-
-    startBtn.onclick = () => {
-        startBtn.style.display = "none";
-        header.style.display = "none";
-        candle.style.display = "block";
-        music.play();
-    };
+    let slideIdx = 0;
+    function runSlideshow() {
+        let s = document.getElementsByClassName("slides");
+        for (let i = 0; i < s.length; i++) { s[i].classList.remove("active"); }
+        slideIdx++;
+        if (slideIdx > s.length) { slideIdx = 1; }
+        s[slideIdx-1].classList.add("active");
+        setTimeout(runSlideshow, 3000);
+    }
 
     candle.onclick = () => {
         candle.style.display = "none";
         content.style.display = "block";
-        // Create confetti
+        runSlideshow();
         for (let i = 0; i < 70; i++) {
             const c = document.createElement("div");
             c.className = "confetti";
@@ -148,6 +90,5 @@ body {
         }
     };
 </script>
-
 </body>
 </html>
