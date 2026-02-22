@@ -57,25 +57,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
     const heartBtn = document.getElementById("heart-btn");
     const messageSection = document.getElementById("messageSection");
     const music = document.getElementById("music");
-
-    startBtn.onclick = function() {
-        startBtn.style.display="none"; 
-        document.getElementById("header").style.display="none"; 
-        candle.style.display="block"; 
-        music.play();
-    };
-
-    candle.onclick = function() {
-        candle.style.display="none"; 
-        photoSection.style.display="block";
-    };
-
+    startBtn.onclick = function() { startBtn.style.display="none"; document.getElementById("header").style.display="none"; candle.style.display="block"; music.play(); };
+    candle.onclick = function() { candle.style.display="none"; photoSection.style.display="block"; };
     heartBtn.onclick = function() {
-        // This hides the photos and reveals the message
         photoSection.style.display = "none";
         messageSection.style.display = "block";
         window.scrollTo(0,0);
-        
         for (let i = 0; i < 80; i++) {
             const c = document.createElement("div");
             c.className = "confetti";
