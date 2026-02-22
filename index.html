@@ -15,14 +15,14 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
 
 #birthdayContent { display: none; width: 95%; max-width: 600px; padding: 20px; }
 .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
-.photo-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); background: #eee; }
+.photo-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
 #message { line-height: 1.8; padding: 25px; background: rgba(255, 255, 255, 0.5); border-radius: 20px; backdrop-filter: blur(10px); margin: 30px 0; font-size: 19px; font-weight: bold; text-align: left; }
 
-/* Surprise Heart Section */
-#surprise-btn { font-size: 60px; cursor: pointer; background: none; border: none; animation: pulse 1.5s infinite; margin: 20px 0; display: block; width: 100%; }
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-#surprise-msg { display: none; font-size: 22px; color: #ff1e7b; font-weight: bold; padding: 20px; background: white; border-radius: 20px; margin-bottom: 50px; }
+/* Surprise Heart */
+#heart-btn { font-size: 80px; cursor: pointer; background: none; border: none; animation: pulse 1.5s infinite; margin-top: 20px; display: inline-block; }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
+#surprise-reveal { display: none; background: white; padding: 25px; border-radius: 20px; margin: 20px 0 60px; font-weight: bold; color: #ff1e7b; font-size: 22px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
 .confetti { position: fixed; top: -20px; width: 10px; height: 10px; animation: fall 3s linear forwards; z-index: 100; }
 @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
@@ -57,9 +57,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
         <p>You’re not just my friend — you’re like the sister I can tell everything to without fear or hesitation. I’m so grateful for you, and I hope this year brings you as much happiness as you’ve brought into my life. 💗</p>
     </div>
 
-    <button id="surprise-btn">💗</button>
-    <p style="font-weight: bold; color: #ff1e7b;">press me to reveal your next surprise</p>
-    <div id="surprise-msg">Surprise! You're the best! 🎂🎉✨</div>
+    <button id="heart-btn">💗</button>
+    <p id="heart-text" style="font-weight: bold; color: #ff1e7b; font-size: 1.1rem;">press me to reveal your next surprise</p>
+    <div id="surprise-reveal">You are the most precious person I know! 🎂✨💖</div>
 </div>
 
 <audio id="music" loop><source src="https://cdn.pixabay.com/audio/2022/03/10/audio_5500e309f4.mp3" type="audio/mpeg"></audio>
@@ -69,8 +69,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
     const startBtn = document.getElementById("startBtn");
     const candle = document.getElementById("candle-container");
     const content = document.getElementById("birthdayContent");
-    const surpriseBtn = document.getElementById("surprise-btn");
-    const surpriseMsg = document.getElementById("surprise-msg");
+    const heartBtn = document.getElementById("heart-btn");
+    const heartText = document.getElementById("heart-text");
+    const surpriseReveal = document.getElementById("surprise-reveal");
 
     startBtn.onclick = () => { startBtn.style.display = "none"; document.getElementById("header").style.display = "none"; candle.style.display = "block"; music.play(); };
 
@@ -87,10 +88,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
         }
     };
 
-    surpriseBtn.onclick = () => {
-        surpriseMsg.style.display = "block";
-        surpriseBtn.style.display = "none";
-        surpriseBtn.nextElementSibling.style.display = "none";
+    heartBtn.onclick = () => {
+        surpriseReveal.style.display = "block";
+        heartBtn.style.display = "none";
+        heartText.style.display = "none";
     };
 </script>
 </body>
