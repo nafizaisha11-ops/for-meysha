@@ -11,31 +11,24 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
 #candle-body { width: 30px; height: 120px; background: repeating-linear-gradient(45deg, #fff9c4, #fff9c4 10px, #ff5252 10px, #ff5252 20px); border-radius: 5px; margin: 0 auto; position: relative; }
 .flame { width: 18px; height: 30px; background: orange; border-radius: 50%; position: absolute; top: -35px; left: 50%; transform: translateX(-50%); animation: flicker 0.1s infinite alternate; }
 @keyframes flicker { 0% { transform: translateX(-50%) scale(1); } 100% { transform: translateX(-51%) scale(1.1); } }
-
 #photoSection { display: none; width: 95%; max-width: 600px; padding: 20px; }
 .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
 .photo-grid img { width: 100%; height: 220px; object-fit: cover; border-radius: 15px; border: 3px solid white; background-color: #fff; }
-
 #heart-btn { font-size: 90px; cursor: pointer; background: none; border: none; animation: pulse 1.5s infinite; margin-top: 30px; }
 @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-
 #messageSection { display: none; width: 90%; max-width: 600px; padding: 40px 0; }
 #message { line-height: 1.8; padding: 25px; background: rgba(255, 255, 255, 0.6); border-radius: 20px; backdrop-filter: blur(10px); font-size: 19px; font-weight: bold; text-align: left; }
-
 .confetti { position: fixed; top: -20px; width: 10px; height: 10px; animation: fall 3s linear forwards; z-index: 100; }
 @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 </style>
 </head>
 <body>
-
 <h1 id="header">Happy Birthday Meysha</h1>
 <button id="startBtn">Click to Start</button>
-
 <div id="candle-container">
     <div id="candle-body"><div class="flame"></div></div>
     <p style="font-weight: bold; color: #ff1e7b; margin-top: 20px;">"Tap the candle to blow it out!"</p>
 </div>
-
 <div id="photoSection">
     <h2 style="color: #ff1e7b;">here are some beautiful pictures of you🤣</h2>
     <div class="photo-grid">
@@ -47,7 +40,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
     <button id="heart-btn">💗</button>
     <p id="heart-text" style="font-weight: bold; color: #ff1e7b;">tap to reveal your next gift</p>
 </div>
-
 <div id="messageSection">
     <div id="message">
         <p>Happy Birthday, Meysha 🤍</p>
@@ -57,9 +49,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
         <p>You’re not just my friend — you’re like the sister I can tell everything to without fear or hesitation. I’m so grateful for you, and I hope this year brings you as much happiness as you’ve brought into my life. 💗</p>
     </div>
 </div>
-
 <audio id="music" loop><source src="https://cdn.pixabay.com/audio/2022/03/10/audio_5500e309f4.mp3" type="audio/mpeg"></audio>
-
 <script>
     const startBtn = document.getElementById("startBtn");
     const candle = document.getElementById("candle-container");
@@ -67,27 +57,13 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
     const heartBtn = document.getElementById("heart-btn");
     const messageSection = document.getElementById("messageSection");
     const music = document.getElementById("music");
-
-    startBtn.onclick = () => { 
-        startBtn.style.display="none"; 
-        document.getElementById("header").style.display="none"; 
-        candle.style.display="block"; 
-        music.play(); 
-    };
-
-    candle.onclick = () => { 
-        candle.style.display="none"; 
-        photoSection.style.display="block"; 
-    };
-
+    startBtn.onclick = () => { startBtn.style.display="none"; document.getElementById("header").style.display="none"; candle.style.display="block"; music.play(); };
+    candle.onclick = () => { candle.style.display="none"; photoSection.style.display="block"; };
     heartBtn.onclick = () => {
-        // This removes the pictures and titles
+        // HIDE EVERYTHING EXCEPT THE PARAGRAPH
         photoSection.style.display = "none";
-        
-        // This shows the paragraph on a clean "page"
         messageSection.style.display = "block";
         window.scrollTo(0,0);
-        
         for (let i = 0; i < 80; i++) {
             const c = document.createElement("div");
             c.className = "confetti";
