@@ -39,11 +39,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
     <h2 style="color: #ff1e7b;">here are some beautiful pictures of you🤣</h2>
     <div class="photo-grid">
         <img src="IMG_20250202_125710.jpg">
-        <img src="IMG_20260222_122028.jpg">
-        <img src="IMG_20260222_122030.jpg">
-        <img src="IMG_20260222_122032.jpg">
-        <img src="IMG_20260222_122043.jpg">
-        <img src="Screenshot_2024_1204_132208.jpg">
+        <img src="retouch_20260219225222591.jpg">
+        <img src="IMG_20260222_122043_213.jpg">
+        <img src="IMG_20260222_122032_109.jpg">
     </div>
     <button id="heart-btn">💗</button>
     <p id="heart-text" style="font-weight: bold; color: #ff1e7b; font-size: 1.1rem;">tap to reveal your next gift</p>
@@ -56,6 +54,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
         <p>I know I can be a little cranky with you sometimes, but please know that surviving O-Levels without you would have been so much harder for me. Thank you for always being by my side and for patiently listening to all my nonsense.</p>
         <p>If you hadn’t come into my life, it would have felt so numb. Before you, I was scared to open up to people, to go out, to actually have fun and be myself. You have no idea how much you’ve helped me mentally and emotionally.</p>
         <p>You’re not just my friend — you’re like the sister I can tell everything to without fear or hesitation. I’m so grateful for you, and I hope this year brings you as much happiness as you’ve brought into my life. 💗</p>
+        <p style="text-align: center; color: #ff1e7b; font-size: 1.2rem;">You are the most precious person I know! 🎂✨💖</p>
     </div>
 </div>
 
@@ -69,9 +68,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
     const messageSection = document.getElementById("messageSection");
     const music = document.getElementById("music");
 
-    startBtn.onclick = () => { startBtn.style.display = "none"; document.getElementById("header").style.display = "none"; candle.style.display = "block"; music.play(); };
-
-    candle.onclick = () => { candle.style.display = "none"; photoSection.style.display = "block"; window.scrollTo(0,0); };
+    startBtn.onclick = () => { startBtn.style.display="none"; document.getElementById("header").style.display="none"; candle.style.display="block"; music.play(); };
+    candle.onclick = () => { candle.style.display="none"; photoSection.style.display="block"; };
 
     heartBtn.onclick = () => {
         heartBtn.style.display = "none";
@@ -79,7 +77,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: l
         messageSection.style.display = "block";
         messageSection.scrollIntoView({ behavior: 'smooth' });
         
-        for (let i = 0; i < 80; i++) {
+        for (let i = 0; i < 100; i++) {
             const c = document.createElement("div");
             c.className = "confetti";
             c.style.left = Math.random() * 100 + "vw";
